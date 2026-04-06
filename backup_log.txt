@@ -1,0 +1,11 @@
+2026-03-18 14:29:43.931022 - Backup: backup_auto_plataforma_mell_2026-03-18_14-29.sql
+2026-03-19 08:32:03.375996 - Backup: backup_auto_plataforma_mell_2026-03-19_08-32.sql
+2026-03-20 08:32:06.624995 - Backup: backup_auto_plataforma_mell_2026-03-20_08-32.sql
+2026-03-23 17:42:59.890563 - Backup: backup_auto_plataforma_mell_2026-03-23_17-42.sql
+2026-03-24 10:03:48.046744 - Backup: backup_auto_plataforma_mell_2026-03-24_10-03.sql
+2026-03-25 10:54:09.244885 - Backup: backup_auto_plataforma_mell_2026-03-25_10-54.sql
+2026-03-26 09:02:52.951206 - Backup: backup_auto_plataforma_mell_2026-03-26_09-02.sql
+2026-03-27 09:51:00.109580 - Backup: backup_auto_plataforma_mell_2026-03-27_09-50.sql
+2026-03-30 08:28:21.836148 - Backup: backup_auto_plataforma_mell_2026-03-30_08-28.sql
+2026-03-31 08:22:43.732891 - Backup: backup_auto_plataforma_mell_2026-03-31_08-22.sql
+2026-04-01 08:31:12.628161 - Backup: backup_auto_plataforma_mell_2026-04-01_08-31.sql

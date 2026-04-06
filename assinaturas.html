@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Assinaturas para Certificados</title>
+    <style>
+        body {
+            font-family: 'Segoe Script', 'Brush Script MT', cursive;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #169fda;
+        }
+        .instrucao {
+            text-align: center;
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .assinatura-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .assinatura-card h3 {
+            color: #169fda;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .assinatura {
+            width: 100%;
+            height: 140px;
+            margin: 20px 0;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+        }
+        .linha {
+            width: 80%;
+            height: 2px;
+            background: #169fda;
+            margin: 20px auto;
+            position: relative;
+        }
+        .linha::before {
+            content: "✍️";
+            position: absolute;
+            left: -25px;
+            top: -12px;
+            font-size: 20px;
+        }
+        .linha::after {
+            content: "✍️";
+            position: absolute;
+            right: -25px;
+            top: -12px;
+            font-size: 20px;
+        }
+        .nome {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0 5px;
+        }
+        .cargo {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        button {
+            background: #169fda;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0d7ab3;
+        }
+        .print-btn {
+            background: #28a745;
+        }
+        .print-btn:hover {
+            background: #218838;
+        }
+        .codigo {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>✍️ Assinaturas para Certificados</h1>
+    
+    <div class="instrucao">
+        <strong>📸 Como salvar a imagem:</strong><br>
+        1. Clique em "Abrir para Capturar"<br>
+        2. Na nova janela, use a ferramenta de captura de tela (Windows + Shift + S) ou Print Screen<br>
+        3. Salve como PNG com o nome indicado
+    </div>
+    
+    <div class="container">
+        <!-- Assinatura 1 - Coordenação -->
+        <div class="assinatura-card">
+            <h3>📌 Coordenação</h3>
+            <div class="assinatura" id="assinatura1">
+                <div class="linha"></div>
+                <div class="nome">Marian</div>
+                <div class="cargo">Coordenador de Treinamentos</div>
+            </div>
+            <button onclick="abrirParaCapturar('assinatura1')">📸 Abrir para Capturar</button>
+            <button onclick="copiarNome('assinatura_coordenacao.png')">📋 Copiar Nome do Arquivo</button>
+        </div>
+        
+        <!-- Assinatura 2 - Gerência -->
+        <div class="assinatura-card">
+            <h3>📌 Gerência</h3>
+            <div class="assinatura" id="assinatura2">
+                <div class="linha"></div>
+                <div class="nome">Fabiana</div>
+                <div class="cargo">Gerente de RH</div>
+            </div>
+            <button onclick="abrirParaCapturar('assinatura2')">📸 Abrir para Capturar</button>
+            <button onclick="copiarNome('assinatura_gerencia.png')">📋 Copiar Nome do Arquivo</button>
+        </div>
+        
+        <!-- Assinatura 3 - Diretor -->
+        <div class="assinatura-card">
+            <h3>📌 Diretoria</h3>
+            <div class="assinatura" id="assinatura3">
+                <div class="linha"></div>
+                <div class="nome">Wamberto</div>
+                <div class="cargo">Diretor Geral</div>
+            </div>
+            <button onclick="abrirParaCapturar('assinatura3')">📸 Abrir para Capturar</button>
+            <button onclick="copiarNome('assinatura_diretor.png')">📋 Copiar Nome do Arquivo</button>
+        </div>
+    </div>
+    
+    <div class="codigo">
+        <strong>📋 CÓDIGO PYTHON PARA INSERIR AS ASSINATURAS:</strong><br><br>
+        <code id="codigoPython">
+# Crie um arquivo inserir_assinaturas.py com este código:<br><br>
+from database.queries import get_db_cursor<br>
+import base64<br>
+import os<br><br>
+def inserir_assinatura(tipo, nome, cargo, caminho_imagem):<br>
+    try:<br>
+        with open(caminho_imagem, 'rb') as f:<br>
+            imagem_bytes = f.read()<br>
+        with get_db_cursor(commit=True) as cursor:<br>
+            cursor.execute("""<br>
+                UPDATE assinaturas_certificados <br>
+                SET nome = %s, cargo = %s, imagem_assinatura = %s, ativo = 1<br>
+                WHERE tipo = %s<br>
+            """, (nome, cargo, imagem_bytes, tipo))<br>
+            print(f"✅ Assinatura {tipo} inserida!")<br>
+    except Exception as e:<br>
+        print(f"Erro: {e}")<br><br>
+# Executar<br>
+inserir_assinatura('coordenacao', 'Marian', 'Coordenador de Treinamentos', 'assinatura_coordenacao.png')<br>
+inserir_assinatura('gerencia', 'Fabiana', 'Gerente de RH', 'assinatura_gerencia.png')<br>
+inserir_assinatura('diretor', 'Wamberto', 'Diretor Geral', 'assinatura_diretor.png')<br>
+        </code>
+        <br>
+        <button onclick="copiarCodigo()">📋 Copiar Código Python</button>
+    </div>
+    
+    <script>
+        function abrirParaCapturar(elementId) {
+            const element = document.getElementById(elementId);
+            const win = window.open('', '_blank');
+            
+            let titulo = '';
+            if (elementId === 'assinatura1') titulo = 'assinatura_coordenacao';
+            else if (elementId === 'assinatura2') titulo = 'assinatura_gerencia';
+            else titulo = 'assinatura_diretor';
+            
+            win.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${titulo}</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            padding: 50px;
+                            background: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            min-height: 100vh;
+                            font-family: 'Segoe Script', 'Brush Script MT', cursive;
+                        }
+                        .assinatura {
+                            width: 450px;
+                            height: 140px;
+                            padding: 20px;
+                            text-align: center;
+                            background: white;
+                            border: 2px solid #169fda;
+                            border-radius: 10px;
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                        }
+                        .linha {
+                            width: 80%;
+                            height: 2px;
+                            background: #169fda;
+                            margin: 20px auto;
+                            position: relative;
+                        }
+                        .linha::before {
+                            content: "✍️";
+                            position: absolute;
+                            left: -25px;
+                            top: -12px;
+                            font-size: 20px;
+                        }
+                        .linha::after {
+                            content: "✍️";
+                            position: absolute;
+                            right: -25px;
+                            top: -12px;
+                            font-size: 20px;
+                        }
+                        .nome {
+                            font-size: 26px;
+                            font-weight: bold;
+                            color: #2c3e50;
+                            margin: 10px 0 5px;
+                        }
+                        .cargo {
+                            font-size: 14px;
+                            color: #7f8c8d;
+                        }
+                        .info {
+                            text-align: center;
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #666;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div>
+                        <div class="assinatura">
+                            ${element.innerHTML}
+                        </div>
+                        <div class="info">
+                            ⚡ Pressione Ctrl + Shift + S para capturar esta assinatura<br>
+                            ou use a ferramenta de recorte do Windows (Windows + Shift + S)
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            win.document.close();
+            win.focus();
+        }
+        
+        function copiarNome(nomeArquivo) {
+            navigator.clipboard.writeText(nomeArquivo);
+            alert(`✅ Nome "${nomeArquivo}" copiado!`);
+        }
+        
+        function copiarCodigo() {
+            const codigo = `from database.queries import get_db_cursor
+import base64
+import os
+
+def inserir_assinatura(tipo, nome, cargo, caminho_imagem):
+    try:
+        if not os.path.exists(caminho_imagem):
+            print(f"❌ Arquivo não encontrado: {caminho_imagem}")
+            return False
+        
+        with open(caminho_imagem, 'rb') as f:
+            imagem_bytes = f.read()
+        
+        print(f"📷 {caminho_imagem}: {len(imagem_bytes)} bytes")
+        
+        with get_db_cursor(commit=True) as cursor:
+            cursor.execute(\"\"\"
+                UPDATE assinaturas_certificados 
+                SET nome = %s, cargo = %s, imagem_assinatura = %s, ativo = 1
+                WHERE tipo = %s
+            \"\"\", (nome, cargo, imagem_bytes, tipo))
+            print(f"✅ Assinatura {tipo} inserida!")
+            return True
+    except Exception as e:
+        print(f"❌ Erro: {e}")
+        return False
+
+print("="*50)
+print("Inserindo assinaturas...")
+print("="*50)
+
+inserir_assinatura('coordenacao', 'Marian', 'Coordenador de Treinamentos', 'assinatura_coordenacao.png')
+inserir_assinatura('gerencia', 'Fabiana', 'Gerente de RH', 'assinatura_gerencia.png')
+inserir_assinatura('diretor', 'Wamberto', 'Diretor Geral', 'assinatura_diretor.png')
+
+print("="*50)
+print("Processo concluído!")`;
+            
+            navigator.clipboard.writeText(codigo);
+            alert('✅ Código Python copiado!');
+        }
+    </script>
+</body>
+</html>
